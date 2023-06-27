@@ -3,6 +3,16 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///shop.db'
+db = SQLAlchemy
+
+class Table(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = 0
+    price = 0
+    description = 0
+    photo = 0
+    isActive = 0
+
 
 @app.route('/')
 @app.route('/home')
