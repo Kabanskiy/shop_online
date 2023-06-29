@@ -7,11 +7,11 @@ db = SQLAlchemy
 
 class Table(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    name = 0
-    price = 0
-    description = 0
-    photo = 0
-    isActive = 0
+    name = db.Column(db.String(100), nullable = False)
+    price = db.Column(db.Integer, nullable = False)
+    description = db.Column(db.String(300), nullable = False)
+    # photo = db.Column(db.String(300), nullable = False)
+    isActive = db.Column(db.Boolean, default = True)
 
 
 @app.route('/')
