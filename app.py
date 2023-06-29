@@ -24,6 +24,14 @@ def home():
 def about():
     return render_template('about.html')
 
+@app.route('/create')
+def create():
+    return render_template('create.html')
+
+@app.route('/detail')
+def detail():
+    return render_template('detail.html')
+
 @app.route('/faq')
 def faq():
     return render_template('FAQ.html')
