@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -24,8 +24,21 @@ def home():
 def about():
     return render_template('about.html')
 
-@app.route('/create')
+@app.route('/create', methods=['POST', 'GET'])
 def create():
+    if request.method == 'POST':
+        name = request.form['name']
+        price = request.form['price']
+        description = request.form['description']
+
+        table = Table(name=name, price=price, description=description)
+
+        try:
+            db.session.add(table)
+            db.session.commit()
+            return redirect('/')
+        except:
+            return 'Что-то полшо не так'
     return render_template('create.html')
 
 @app.route('/detail')
