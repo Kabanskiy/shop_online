@@ -14,11 +14,15 @@ class Table(db.Model):
     # photo = db.Column(db.String(300), nullable = False)
     isActive = db.Column(db.Boolean, default = True)
 
+    def __repr__(self):
+        return self.name
+
 
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    tables = Table.query.order_by(Table.price).all()
+    return render_template('home.html', data=tables)
 
 @app.route('/about')
 def about():
